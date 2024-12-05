@@ -1,6 +1,6 @@
 # File Guide for K-Means Project
 
-This branch contains all files related to the k-means clustering project. Below is a guide to the files and their purposes.
+This branch contains all files related to the  `[rfandozzi-k-means]` branch. Below is a guide to the files and their purposes.
 
 ---
 
