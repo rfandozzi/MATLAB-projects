@@ -1,4 +1,4 @@
-# File Guide for [rfandozzi-dynamic-systems-modeling]
+# File Guide for Dynamic Systems Modeling Project
 
 This document provides an overview of the files in the `[rfandozzi-dynamic-systems-modeling]` branch.
 
