@@ -12,13 +12,13 @@ This document provides an overview of the files in the `[rfandozzi-dynamic-syste
 There are 4 key arrays in the file:
 
 1. **`cases_STL`**  
-   - A \(1 \times n\) vector containing cumulative COVID-19 cases for St. Louis city and county over time.
+   - A 1 x 158 vector containing cumulative COVID-19 cases for St. Louis city and county over time.
 
 2. **`deaths_STL`**  
-   - A \(1 \times n\) vector containing cumulative COVID-19 deaths for St. Louis city and county over time.
+   - A 1 x 158 vector containing cumulative COVID-19 deaths for St. Louis city and county over time.
 
 3. **`dates`**  
-   - A \(1 \times n\) vector where each entry corresponds to the date of the respective entries in `cases_STL` and `deaths_STL`.
+   - A 1 x 158 vector where each entry corresponds to the date of the respective entries in `cases_STL` and `deaths_STL`.
 
 4. **`POP_STL`**  
    - A scalar value representing the total population of St. Louis city and county.
@@ -39,10 +39,10 @@ There are 4 key arrays in the file:
 There are 2 key arrays in the file:
 
 1. **`cumulativeDeaths`**  
-   - A \(1 \times 400\) vector representing the cumulative fraction of the population that has died due to the disease over 400 days.
+   - A 1 x 400 vector representing the cumulative fraction of the population that has died due to the disease over 400 days.
 
 2. **`newInfections`**  
-   - A \(1 \times 400\) vector representing the fraction of the population that became newly infected each day.
+   - A 1 x 400 vector representing the fraction of the population that became newly infected each day.
 
 ---
 
