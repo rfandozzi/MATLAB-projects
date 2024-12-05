@@ -97,7 +97,7 @@ This script evaluates the accuracy of the clustering model by assigning testing 
 
 ---
 
-### **3. [case study 1 report.pdf]**
+### **File: case study 1 report.pdf**
 - **Description:** Detailed writeup for the project. Explains the objectives, methods, and results.
 - **Format:** PDF
 
