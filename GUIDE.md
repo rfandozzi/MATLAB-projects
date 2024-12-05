@@ -6,95 +6,192 @@ This document provides an overview of the files in the `[rfandozzi-dynamic-syste
 
 ## Files and Descriptions
 
-### **1. [COVIDbyCounty (1).mat]**
-####**Description:** There are 3 key arrays in the file:
-1. **CNTY_COVID**  
-   - An `m × n` matrix, where `m` is the number of counties and `n` is the number of dates.  
-   - Each entry represents the new COVID-19 cases in a county per week, normalized by 100k population.
+### **File: COVID_STL (1).mat**
 
-2. **CNTY_CENSUS**  
-   - A table with `m` rows corresponding to counties in the `CNTY_COVID` matrix.  
-   - Columns provide summary census data, including:
-     - FIPS code
-     - Division code
-     - Division name
-     - State name
-     - County name
-     - Estimated population (2021).
+#### **Description:**
+There are 4 key arrays in the file:
 
-3. **dates**  
-   - A `1 × n` vector containing dates that correspond to the columns in the `CNTY_COVID` matrix.
+1. **`cases_STL`**  
+   - A \(1 \times n\) vector containing cumulative COVID-19 cases for St. Louis city and county over time.
+
+2. **`deaths_STL`**  
+   - A \(1 \times n\) vector containing cumulative COVID-19 deaths for St. Louis city and county over time.
+
+3. **`dates`**  
+   - A \(1 \times n\) vector where each entry corresponds to the date of the respective entries in `cases_STL` and `deaths_STL`.
+
+4. **`POP_STL`**  
+   - A scalar value representing the total population of St. Louis city and county.
+
+---
+
 #### **Usage:** 
 - Load this file in MATLAB using:
   ```matlab
-  load('COVIDbyCounty (1).mat');
+  load('COVID_STL (1).mat');
 
 
 ---
 
-### **2. [part1-1.m]**
-### **File: [filename.m]**
+### **File: mockdata (1).mat**
 
 #### **Description:**
-This script analyzes COVID-19 case data and census data to study linear independence and interpret relationships between case trajectories for different counties in the U.S. The key tasks performed are:
+There are 2 key arrays in the file:
 
-1. **Identify the Most Populous County in Each Census Division:**
-   - Using the 2021 census data, the script identifies the 9 most populous counties (one per division) and extracts their COVID-19 case data.
-   - **Output:** A plot visualizing the COVID-19 case trajectories for these 9 counties.
+1. **`cumulativeDeaths`**  
+   - A \(1 \times 400\) vector representing the cumulative fraction of the population that has died due to the disease over 400 days.
 
-2. **Check for Linear Independence:**
-   - Computes the angles between the COVID case trajectories of the 9 counties to verify linear independence.
-
-3. **Normalize the Trajectories:**
-   - Each trajectory vector is normalized so its norm equals 1, resulting in a set of unit vectors denoted as \(d_1, d_2, \ldots, d_9\).
-
-4. **Analyze St. Louis City Data:**
-   - Denotes the COVID-19 case data for St. Louis City as \(c\).
-   - For each of the 9 unit vectors \(d_i\), computes the residual vector:
-     \[
-     r_i = c - (c^T d_i)d_i
-     \]
-   - Computes the norm \(||r_i||_2\) for \(i = 1, \ldots, 9\).
-   - **Interpretation of \(r_i\):**
-     - \(r_i\) represents the component of \(c\) orthogonal to \(d_i\), meaning the portion of \(c\) that cannot be explained by \(d_i\).
-     - The norm \(||r_i||_2\) measures how different St. Louis City's case trajectory is from being explained by the trajectory of the \(i\)-th census division's most populous county.
+2. **`newInfections`**  
+   - A \(1 \times 400\) vector representing the fraction of the population that became newly infected each day.
 
 ---
 
 #### **Usage:**
-- Run the script in MATLAB to:
-  - Identify and visualize the most populous counties' COVID trajectories.
-  - Check linear independence of the trajectories.
-  - Compute residuals and analyze St. Louis City's relationship to census divisions.
+- Load the file into MATLAB:
+  ```matlab
+  load('mockdata.mat');
+
+
+
+
+### **File: part1-1.m**
+
+#### **Description:**
+This project involves simulating and analyzing a discrete-time dynamical model based on the SIRD (susceptible infected recovered dead) framework, with extensions to include re-infections. The tasks explore custom model implementation, parameter sensitivity, and comparisons with MATLAB's built-in functions. Key aspects of the project include:
 
 ---
 
-#### **Key Insights:**
-- The residual \(r_i\) describes how well the trajectory of St. Louis City's case data aligns with that of a census division's most populous county.
-- If \(||r_i||_2\) is large for all 9 divisions, it may suggest that St. Louis City's trajectory cannot be accurately represented by the trajectories of the most populous counties in each census division. If \(||r_i||_2\) is small, this indicates greater similarity between St. Louis city and the most populous counties.
+#### **Key Steps:**
+
+1. **Simulate the Model from Scratch:**
+   - Implements the SIRD model using matrix and vector operations, avoiding excessive use of loops.
+   - Explores how varying model parameters affects the output dynamics.
+   - Produces plots to observe how the system converges over time, mirroring examples from reference literature.
+
+2. **Modify the Model for Re-Infections:**
+   - Extends the base SIRD model to include scenarios where recovered individuals can become susceptible again.
+   - Simulates the modified model and produces plots to analyze the impact of re-infections.
+
+3. **Analyze the `base sir.m` Script:**
+   - Explores the MATLAB `ss` and `lsim` functions for simulating linear dynamical systems.
+   - Examines the discrete-time implementation and the role of state matrix `A` in the model setup.
+   - Compares outputs from the custom simulation (from scratch) with those from `lsim`-based simulations.
+
+4. **Document Results:**
+   - Compares and contrasts the performance of from-scratch and built-in implementations.
+
+
+---
+
+
+#### **Outputs:**
+- Figures illustrating:
+  - Parameter sensitivity in the SIRD model.
+  - Effects of re-infections on model dynamics.
+  - Comparison between custom and `lsim`-based implementations.
+
+---
+
+
+### **File: part2.m**
+
+#### **Description:**
+This MATLAB script models and analyzes the propagation dynamics of COVID-19 during the Delta and Omicron waves in St. Louis city and county. It optimizes transition matrices for the SIRD model to fit real data and compares the dynamics of the two phases.
+
+---
+
+#### **Key Features:**
+- **Delta Wave Analysis:**  
+  - Optimizes the transition matrix \(A\) to minimize the error between model and real data for cases and deaths.
+  - Visualizes modeled and real data dynamics during the Delta phase.
+  
+- **Omicron Wave Analysis:**  
+  - Similar optimization and visualization as the Delta wave, adjusted for Omicron data.
+  
+- **Comparison Across Waves:**  
+  - Highlights differences in viral propagation and models the impact of varying transmission parameters.
+
+---
+
+#### **Usage:**
+1. **Input Data:** Requires `COVID_STL.mat` containing cumulative cases, deaths, and population data.
+2. **Run Script:** Adjust initial guesses and bounds for \(A\) matrix as needed.
+3. **Output:** Plots comparing modeled vs. real cases and deaths for each phase.
 
 ---
 
 #### **Dependencies:**
-- Requires `COVIDbyCounty (1).mat` for the COVID and census data.
+- MATLAB Optimization Toolbox (for `fmincon`).
+- `COVID_STL.mat` dataset.
 
 ---
 
-### **3. [writeup.pdf]**
+#### **Output:**
+- Optimized transition matrices for Delta and Omicron phases.
+- Comparative plots of real vs. modeled dynamics.
+
+
+---
+
+### **File: part3.m**
+
+#### **Description:**
+This MATLAB script models the dynamics of a population experiencing the rollout of vaccines and breakthrough infections over time. Using mock data (`mockdata.mat`), the script augments a base SIRD model to include vaccination as a state variable and estimates key metrics such as vaccination and breakthrough infection rates.
+
+---
+
+#### **Key Features:**
+1. **Pre-Vaccine Dynamics:**
+   - Simulates population dynamics before vaccine rollout (days 1–125) using a state transition matrix.
+
+2. **Post-Vaccine Dynamics:**
+   - Incorporates vaccination as a state variable and simulates population behavior after day 125.
+   - Adds breakthrough infections to the model with appropriate transition rates.
+
+3. **Parameter Estimation:**
+   - Estimates the vaccination rate and breakthrough infection rate from the augmented model.
+   - Compares model-predicted new cases and deaths to the real data.
+
+4. **Visualization:**
+   - Plots model outputs (deaths and new cases) against real data for comparison.
+
+---
+
+#### **Usage:**
+1. **Input Data:**
+   - Load `mockdata.mat`, which contains cumulative deaths and new infections over 400 days.
+
+2. **Run Script:**
+   - Adjust transition matrices `A1` (pre-vaccine) and `A2` (post-vaccine) for specific scenarios.
+   - Execute the script to simulate population dynamics and compute metrics.
+
+3. **Output:**
+   - Estimated vaccination and breakthrough infection rates.
+   - Comparative plots of model and real data.
+
+---
+
+#### **Dependencies:**
+- MATLAB environment.
+- Input file `mockdata.mat`.
+
+---
+
+#### **Outputs:**
+- Vaccination rate and breakthrough rate estimates displayed in the command window.
+- Comparative plots showing:
+  - Modeled vs. real deaths.
+  - Modeled vs. real new infections.
+  - Total population dynamics across all states.
+
+---
+
+### **File: Case_Study_2 (3) (2).pdf**
 - **Description:** Detailed writeup for the project. Explains the objectives, methods, and results.
 - **Format:** PDF
-- **Location:** [Link to file, if applicable]
 
----
-
-## How to Run
-1. Open MATLAB and navigate to the folder containing these files.
-2. Run the main script (e.g., `main_file.m`).
-3. Follow the prompts or documentation for usage instructions.
-
----
 
 ## Additional Notes
-- **Author:** Your Name
-- **Date:** Date the branch was last updated.
-- **Contact:** Email or GitHub username for questions or suggestions.
+- **Author:** Raynah Fandozzi
+- **Date:** 12/5/2024
+- **Contact:** @rfandozzi
