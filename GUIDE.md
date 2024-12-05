@@ -7,7 +7,8 @@ This branch contains all files related to the k-means clustering project. Below 
 ## Files and Descriptions
 
 ### **File: COVIDbyCounty (1).mat**
-####**Description:** 
+
+#### **Description:** 
 There are 3 key arrays in the file:
 1. **CNTY_COVID**  
    - An `m × n` matrix, where `m` is the number of counties and `n` is the number of dates.  
