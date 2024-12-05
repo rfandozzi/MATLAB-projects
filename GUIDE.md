@@ -6,7 +6,32 @@ This branch contains all files related to the k-means clustering project. Below 
 
 ## Files and Descriptions
 
+### **File: COVIDbyCounty (1).mat**
+####**Description:** 
+There are 3 key arrays in the file:
+1. **CNTY_COVID**  
+   - An `m × n` matrix, where `m` is the number of counties and `n` is the number of dates.  
+   - Each entry represents the new COVID-19 cases in a county per week, normalized by 100k population.
 
+2. **CNTY_CENSUS**  
+   - A table with `m` rows corresponding to counties in the `CNTY_COVID` matrix.  
+   - Columns provide summary census data, including:
+     - FIPS code
+     - Division code
+     - Division name
+     - State name
+     - County name
+     - Estimated population (2021).
+
+3. **dates**  
+   - A `1 × n` vector containing dates that correspond to the columns in the `CNTY_COVID` matrix.
+#### **Usage:** 
+- Load this file in MATLAB using:
+  ```matlab
+  load('COVIDbyCounty (1).mat');
+
+
+---
 ### **File: cluster_covid_data-1.m**
 
 #### **Description:**
