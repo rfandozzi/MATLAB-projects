@@ -129,3 +129,9 @@ This script evaluates the accuracy of the clustering model by assigning testing 
 
 ---
 
+## Additional Notes
+- **Author:** Raynah Fandozzi
+- **Date:** 12/5/2024
+- **Contact:** @rfandozzi
+
+
