@@ -12,12 +12,12 @@ This branch contains all files related to the  `[feature-engineering]` branch. B
 There are 2 key arrays in the file:
 
 1. **`trainImages`**  
-   - A \(28 \times 28 \times 24000\) three-dimensional array containing \(n\) grayscale images.  
-   - Each image is a \(28 \times 28\) matrix with pixel values ranging between 0 and 1.
+   - A 28 x 28 x 24000 three-dimensional array containing 24000 grayscale images.  
+   - Each image is a 28 x 28 matrix with pixel values ranging between 0 and 1.
 
 2. **`trainLabels`**  
-   - A \(24000 \times 1\) vector containing the corresponding labels for each image in `trainImages`.  
-   - Each label is an integer in the set \(\{0, 1, \ldots, 9\}\), representing the digit depicted in the image.
+   - A 24000 x 1 vector containing the corresponding labels for each image in `trainImages`.  
+   - Each label is an integer in the set {0, 1, ... , 9}, representing the digit depicted in the image.
 
 ---
 
@@ -34,12 +34,12 @@ There are 2 key arrays in the file:
 There are 2 key arrays in the file:
 
 1. **`testImages`**  
-   - A \(28 \times 28 \times 8000\) three-dimensional array containing \(n\) grayscale images.  
+   - A 28 x 28 x 8000 three-dimensional array containing 8000 grayscale images.  
    - Each image is a \(28 \times 28\) matrix with pixel values ranging between 0 and 1.
 
 2. **`trainLabels`**  
-   - A \(8000 \times 1\) vector containing the corresponding labels for each image in `trainImages`.  
-   - Each label is an integer in the set \(\{0, 1, \ldots, 9\}\), representing the digit depicted in the image.
+   - A 8000 x 1 vector containing the corresponding labels for each image in `trainImages`.  
+   - Each label is an integer in the set {0, 1, ... , 9}, representing the digit depicted in the image.
 
 ---
 
@@ -66,18 +66,18 @@ This MATLAB script analyzes and classifies MNIST digit data through visualizatio
    - Titles, labels, and grayscale colormap enhance interpretability.
 
 2. **Image Reshaping (Part ii):**
-   - Reshapes each \(28 \times 28\) image matrix into a \(784 \times 1\) column vector.
+   - Reshapes each 28 x 28 image matrix into a 784 x 1 column vector.
    - Stacks all vectors into a single matrix for further analysis.
 
 3. **Least Squares Classification (Part iii):**
-   - Randomly samples \(N\) images and computes weights \(w\) using the pseudoinverse to solve:
+   - Randomly samples N images and computes weights w using the pseudoinverse to solve:
      \[
      \min_w \| X^T w - Y \|^2
      \]
-   - Uses \(w\) to predict labels for the dataset and evaluates performance with:
+   - Uses w to predict labels for the dataset and evaluates performance with:
      - A confusion matrix for error analysis.
      - Accuracy computation.
-   - Explores how varying \(N\) affects classification accuracy.
+   - Explores how varying N affects classification accuracy.
 
 ---
 
@@ -87,7 +87,7 @@ This MATLAB script analyzes and classifies MNIST digit data through visualizatio
 2. **Reshape Images:**
    - Converts MNIST image matrices into flattened vectors for easier computational handling.
 3. **Classification:**
-   - Adjust \(N\) (sample size) to observe its effect on accuracy.
+   - Adjust N (sample size) to observe its effect on accuracy.
    - Outputs a confusion matrix and accuracy score.
 
 ---
@@ -222,7 +222,7 @@ This MATLAB script implements a multi-class classifier for handwritten digits (0
      - `means` and `std_dev`: Normalization parameters.
 
 3. **Output:**
-   - Returns the predicted label (\(k \in \{0, 1, \dots, 9\}\)).
+   - Returns the predicted label k in {0, 1, ... , 9}.
 
 ---
 
