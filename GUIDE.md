@@ -35,7 +35,7 @@ There are 2 key arrays in the file:
 
 1. **`testImages`**  
    - A 28 x 28 x 8000 three-dimensional array containing 8000 grayscale images.  
-   - Each image is a \(28 \times 28\) matrix with pixel values ranging between 0 and 1.
+   - Each image is a 28 x 28 matrix with pixel values ranging between 0 and 1.
 
 2. **`trainLabels`**  
    - A 8000 x 1 vector containing the corresponding labels for each image in `trainImages`.  
